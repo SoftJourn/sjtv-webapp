@@ -11,9 +11,10 @@ php-mcrypt
 3. Set permissions
 
 ```
-mkdir -p cache/volt
-mkdir -p httpdocs/uploads/thumbs
-chmod o+w httpdocs/playlist.json httpdocs/uploads httpdocs/uploads/thumbs
+touch httpdocs/playlist.json && 
+mkdir -p cache/volt && 
+mkdir -p httpdocs/uploads/thumbs && 
+chmod o+w httpdocs/playlist.json httpdocs/uploads httpdocs/uploads/thumbs &&
 chmod -R o+w cache/volt
 ```
 
