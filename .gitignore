@@ -1,0 +1,9 @@
+.idea
+cache/volt/*
+config/main-sj.php
+/httpdocs/tinypulse-screen/images/*
+/httpdocs/uploads/thumbs/*
+/httpdocs/uploads/*.png
+/httpdocs/uploads/*.jpg
+
+

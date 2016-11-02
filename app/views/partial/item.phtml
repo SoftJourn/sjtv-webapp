@@ -1,0 +1,25 @@
+<div class="col-xs-6 col-md-4">
+  <div class="listItem" data-id="<?php echo $item->id; ?>">
+    <?php if ($item->type == 'image') { ?>
+      <a rel="sjtv" href="<?php echo $item->url; ?>" class="gallery">
+        <img src="<?php echo $item->thumbnail; ?>" alt="" >
+      </a>
+    <?php } ?>
+    <?php if ($item->type == 'youtube') { ?>
+      <iframe width="100%" height="100%" src="https://www.youtube.com/embed/<?php echo $item->id; ?>" frameborder="0" allowfullscreen></iframe>
+    <?php } ?>
+    <div class="settings hidden">
+      <form action="index/updateItem/<?php echo $item->id; ?>" method="post">
+      Created by: <?php echo $item->owner; ?><br>
+      Date: <?php echo date('d.n.Y H:i', $item->created); ?><br>
+      <?php if ($item->type == 'image') { ?>
+        Display: <input type="number" name="duration" value="<?php echo $item->duration; ?>" class="durationInput itemDuration" min="1" max="600">s<br>
+      <?php } ?>
+      </form>
+    </div>
+    <div class="icons">
+      <a href="#" class="removeItem"><i class="fa fa-trash"></i></a>
+      <a href="#" class="itemSettings"><i class="fa fa-cog"></i></a>
+    </div>
+  </div>
+</div>
