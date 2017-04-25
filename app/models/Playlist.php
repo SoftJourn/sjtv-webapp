@@ -31,7 +31,7 @@ class Playlist
                         break;
 
                     case 'youtube':
-                        $youtube = new Youtube($item->url, $item->owner, $item->created);
+                        $youtube = new Youtube($item->url, $item->owner, $item->volumeLevel, $item->created);
                         $this->addItem($youtube);
                         break;
                 }

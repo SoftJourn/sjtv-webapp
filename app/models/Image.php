@@ -36,11 +36,11 @@ class Image extends Item
 
     public function purge()
     {
-        $path = $this->di->get('config')->application->publicDir . self::$filesDir . $this->_file;
+        $path = Di::getDefault()->get('config')->application->publicDir . self::$filesDir . $this->_file;
         if (file_exists($path)) {
             unlink($path);
         }
-        $thumbnail = $this->di->get('config')->application->publicDir . self::$filesDir . 'thumbs/' . $this->_file;
+        $thumbnail = Di::getDefault()->get('config')->application->publicDir . self::$filesDir . 'thumbs/' . $this->_file;
         if (file_exists($thumbnail)) {
             unlink($thumbnail);
         }

@@ -10,3 +10,4 @@ vendor/
 .env
 /app/config/users.txt
 composer.lock
+/public/playlist.json

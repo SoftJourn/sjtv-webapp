@@ -17,4 +17,16 @@ class Youtube extends Item
         $this->volumeLevel = $volumeLevel;
     }
 
+    public function update($data)
+    {
+        foreach ($data as $key => $value) {
+            if(isset($this->{$key})) {
+                $this->{$key} = $value;
+            }
+        }
+        if (array_key_exists('duration', $data)) {
+            $this->duration = floatval($data['duration']);
+        }
+    }
+
 } 
