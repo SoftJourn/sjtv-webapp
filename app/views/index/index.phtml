@@ -63,6 +63,9 @@
       <div class="modal-body">
         <form id="videoUploadForm" action="index/addYoutube" method="POST" class="form-group">
           <input type="text" name="youtubeURL" class="form-control" placeholder="Video URL">
+          <br>
+          <label for="volumeLevel">Volume Level</label>
+          <input type="range" min="0" max="100" step="1" name="volumeLevel" id="volumeLevel"/>
         </form>
       </div>
       <div class="modal-footer">
@@ -135,7 +138,7 @@
     $(this).parents('.listItem').find('.settings').toggleClass('hidden');
     return false;
   });
-  $playlist.on('blur', '.itemDuration', function (el) {
+  $playlist.on('blur', '.updateItem', function (el) {
     $(this).parents('form').submit();
   });
   $('.plDuration').on('blur', function (el) {

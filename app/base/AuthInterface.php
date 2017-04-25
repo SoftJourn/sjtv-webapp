@@ -1,6 +1,4 @@
 <?php
-namespace App\Base;
-
 
 interface AuthInterface {
 
