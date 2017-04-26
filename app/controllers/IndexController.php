@@ -64,13 +64,13 @@ class IndexController extends ControllerBase
             $path = $this->di->get('config')->application->publicDir . Image::$filesDir . $fileName;
             $thumbPath = $this->di->get('config')->application->publicDir . Image::$filesDir . 'thumbs/' . $fileName;
             $file->moveTo($path);
-//            if($ext != '.gif') {
-            $thumbnail = new \Phalcon\Image\Adapter\Imagick($path);
-            $thumbnail->resize(320, 180);
-            $thumbnail->save($thumbPath);
-//            } else {
-//                copy($path, $thumbPath);
-//            }
+            if ($ext != '.gif') {
+                $thumbnail = new \Phalcon\Image\Adapter\Imagick($path);
+                $thumbnail->resize(320, 180);
+                $thumbnail->save($thumbPath);
+            } else {
+                copy($path, $thumbPath);
+            }
 
             $image = new Image($fileName, $owner, $this->request->getPost('newImageDuration'));
             $image->setDateAndTime($this->request->getPost());
