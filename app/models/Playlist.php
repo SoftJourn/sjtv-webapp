@@ -23,18 +23,22 @@ class Playlist
                 switch ($item->type) {
                     case 'image':
                         $file = basename($item->url);
-                        $image = new Image($file, $item->owner, $item->duration, $item->created);
+                        $objectItem = new Image($file, $item->owner, $item->duration, $item->created);
                         if ($item->id) {
-                            $image->id = $item->id;
+                            $objectItem->id = $item->id;
                         }
-                        $this->addItem($image);
                         break;
 
                     case 'youtube':
-                        $youtube = new Youtube($item->url, $item->owner, $item->volumeLevel, $item->created);
-                        $this->addItem($youtube);
+                        $objectItem = new Youtube($item->url, $item->owner, $item->volumeLevel, $item->created);
                         break;
                 }
+                $objectItem->startDate = $item->startDate;
+                $objectItem->endDate = $item->endDate;
+                $objectItem->startTime = $item->startTime;
+                $objectItem->endTime = $item->endTime;
+                $this->addItem($objectItem);
+
             }
         }
     }

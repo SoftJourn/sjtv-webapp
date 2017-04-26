@@ -1,5 +1,7 @@
 <?php
 
+use Phalcon\Validation\Validator\Date as DateValidator;
+use Phalcon\Validation\Validator;
 
 class Item
 {
@@ -8,6 +10,10 @@ class Item
     public $type;
     public $owner;
     public $created;
+    public $startTime;
+    public $endTime;
+    public $startDate;
+    public $endDate;
 
     public function __construct($type, $owner, $created = null)
     {
@@ -30,12 +36,17 @@ class Item
     public function update($data)
     {
         foreach ($data as $key => $value) {
-            if(isset($this->{$key})) {
+            if(property_exists(get_class($this), $key)) {
                 $this->{$key} = $value;
             }
         }
-        if (array_key_exists('duration', $data)) {
-            $this->duration = floatval($data['duration']);
-        }
+    }
+
+    public function setDateAndTime($data)
+    {
+        $this->startDate = $data['startDate'];
+        $this->endDate = $data['endDate'];
+        $this->startTime = $data['startTime'];
+        $this->endTime = $data['endTime'];
     }
 } 

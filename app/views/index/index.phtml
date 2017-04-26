@@ -48,7 +48,6 @@
             <div class="modal-body">
                 <form id="imageUploadForm" action="index/addImage" method="POST" enctype="multipart/form-data">
                     <input type="file" name="newImage" id="newImage">
-
                     <div class="newImageDurationDiv">Duration:
                         <input type="number" class="durationInput" min="1" name="newImageDuration" size="2">s
                     </div>
@@ -161,6 +160,9 @@
     $playlist.on('blur', '.updateItem', function (el) {
         $(this).parents('form').submit();
     });
+    $playlist.on('change', '.timepicker', function (el) {
+        $(this).parents('form').submit();
+    });
     $('.plDuration').on('blur', function (el) {
         $(this).parents('form').submit();
     });
@@ -176,15 +178,16 @@
     });
 
     $('.timepicker').timepicker({
-        disableTextInput: true,
         selectOnBlur: true,
         timeFormat: 'H:i',
         step: 15
     });
+
     $('.datepicker').datepicker({
         autoclose: true,
         format: "dd:mm:yyyy"
     });
+    {{ partial("partial/init_datetime", items) }}
 
     $(document).ready(function () {
         setAjaxForm();

@@ -1,5 +1,5 @@
 <div class="col-xs-6 col-md-4">
-    <div class="listItem" data-id="<?php echo $item->id; ?>">
+    <div class="listItem" data-id="<?php echo $item->id; ?>" id="<?php echo $item->id; ?>">
         <?php if ($item->type == 'image') { ?>
         <a rel="sjtv" href="<?php echo $item->url; ?>" class="gallery">
             <img src="<?php echo $item->thumbnail; ?>" alt="">
@@ -34,8 +34,8 @@
             </form>
         </div>
         <div class=" icons">
-                <a href="#" class="removeItem"><i class="fa fa-trash"></i></a>
-                <a href="#" class="itemSettings"><i class="fa fa-cog"></i></a>
+            <a href="#" class="removeItem"><i class="fa fa-trash"></i></a>
+            <a href="#" class="itemSettings"><i class="fa fa-cog"></i></a>
         </div>
     </div>
 </div>

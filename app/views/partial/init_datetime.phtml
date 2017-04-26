@@ -1,0 +1,14 @@
+<?php foreach($items as $item) : ?>
+<?php if($item->startDate): ?>
+$('#<?php echo $item->id ?> .datepicker[name=startDate]').datepicker('setDate', '<?php echo $item->startDate ?>');
+<?php endif ?>
+<?php if($item->endDate): ?>
+$('#<?php echo $item->id ?> .datepicker[name=endDate]').datepicker('setDate', '<?php echo $item->endDate ?>');
+<?php endif ?>
+<?php if($item->startTime): ?>
+$('#<?php echo $item->id ?> .timepicker[name=startTime]').timepicker('setTime', '<?php echo $item->startTime ?>');
+<?php endif ?>
+<?php if($item->endTime): ?>
+$('#<?php echo $item->id ?> .timepicker[name=endTime]').timepicker('setTime', '<?php echo $item->endTime ?>');
+<?php endif ?>
+<?php endforeach; ?>

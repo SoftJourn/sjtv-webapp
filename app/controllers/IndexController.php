@@ -16,6 +16,7 @@ class IndexController extends ControllerBase
         $this->view->order = $this->playlist->order;
         $this->view->defaultDuration = $this->playlist->defaultDuration;
         $this->view->items = $this->playlist->items;
+//        var_dump($this->playlist->items);exit;
         $this->view->login = $this->session->get('user')->login;
     }
 
@@ -72,6 +73,7 @@ class IndexController extends ControllerBase
 //            }
 
             $image = new Image($fileName, $owner, $this->request->getPost('newImageDuration'));
+            $image->setDateAndTime($this->request->getPost());
             $this->playlist->addItem($image, true);
             $this->playlist->save();
             $result = [
