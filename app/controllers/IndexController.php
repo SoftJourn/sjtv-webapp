@@ -107,6 +107,7 @@ class IndexController extends ControllerBase
             echo json_encode($result);
             return;
         }
+        $video->setDateAndTime($this->request->getPost());
         $this->playlist->addItem($video, true);
         $this->playlist->save();
         $result = [
