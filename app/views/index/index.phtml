@@ -2,6 +2,13 @@
 <div class="userLogin">
     Welcome, {{ login }}! <a href="login/logout">Log out</a>
 </div>
+<label>
+    Show Random
+    <input type="checkbox" {% if order == 'random' %} checked="checked" {% endif %} data-toggle="toggle"
+           id="plOrder"
+           class="plOrder" name="order"/>
+    &nbsp;&nbsp;&nbsp;
+</label>
 <div class="btn-group">
     <button type="button" id="dLabel" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
             aria-haspopup="true"
@@ -14,7 +21,7 @@
     </ul>
 </div>
 <div class="btn-group playlistOptions">
-    <form action="index/update" method="post">
+    <form action="index/updateConfig" method="post">
         Default duration: <input type="number" name="defaultDuration" value="{{ defaultDuration }}"
                                  class="durationInput plDuration" min="1" max="600">s
     </form>
@@ -43,7 +50,7 @@
                     <input type="file" name="newImage" id="newImage">
 
                     <div class="newImageDurationDiv">Duration:
-                        <input type="number" class="durationInput" min="1" max="600" name="newImageDuration" size="2">s
+                        <input type="number" class="durationInput" min="1" ma name="newImageDuration" size="2">s
                     </div>
                 </form>
                 <img id="addImagePreview"/>
@@ -146,6 +153,16 @@
     });
     $('.plDuration').on('blur', function (el) {
         $(this).parents('form').submit();
+    });
+    $('#plOrder').on('change', function (el) {
+        $.post(
+            'index/updateConfig/',
+            {
+                order: $(this).prop('checked')
+            },
+            function (res) {
+                $.notify(res.message, res.status);
+            });
     });
 
     $(document).ready(function () {

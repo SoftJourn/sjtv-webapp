@@ -26,13 +26,6 @@ class Image extends Item
         $this->duration = $duration;
     }
 
-    public function update($data)
-    {
-        if (array_key_exists('duration', $data)) {
-            $this->duration = floatval($data['duration']);
-        }
-    }
-
 
     public function purge()
     {

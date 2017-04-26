@@ -19,7 +19,7 @@ class IndexController extends ControllerBase
         $this->view->login = $this->session->get('user')->login;
     }
 
-    public function updateAction()
+    public function updateConfigAction()
     {
         if ($this->playlist->update($_POST)) {
             $result = [

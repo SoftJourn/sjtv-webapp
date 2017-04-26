@@ -75,12 +75,25 @@ class Playlist
 
     public function update($data)
     {
-        $defaultDuration = floatval($data['defaultDuration']);
-        if ($defaultDuration > 0) {
-            $this->defaultDuration = $defaultDuration;
-            return $this->save();
+        foreach ($data as $key => $value) {
+            switch ($key) {
+                case 'defaultDuration':
+                    $defaultDuration = floatval($value);
+                    if ($defaultDuration > 0) {
+                        $this->defaultDuration = $defaultDuration;
+                        return $this->save();
+                    }
+                    return false;
+                case 'order':
+                    if($value == 'true') {
+                        $this->order = 'random';
+                    } else {
+                        $this->order = 'date';
+                    }
+                    return $this->save();
+            }
         }
-        return false;
+
     }
 
     public function updateItem($id, $data)
