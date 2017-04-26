@@ -198,7 +198,13 @@
         autoclose: true,
         format: "dd:mm:yyyy"
     });
+
     {{ partial("partial/init_datetime", items) }}
+
+
+    $playlist.on('change', '.datepicker', function (el) {
+        $(this).parents('form').submit();
+    });
 
     $(document).ready(function () {
         setAjaxForm();
