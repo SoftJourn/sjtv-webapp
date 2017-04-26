@@ -53,6 +53,7 @@ body {
   height: 100%;
   z-index: 100;
   padding: 3px 10px;
+  overflow-y: scroll;
 }
 .icons{
   position: absolute;
@@ -86,4 +87,32 @@ body {
 .newImageDurationDiv {
   float: right;
   margin-top: -25px;
+}
+
+.timepicker {
+  width: 92px;
+  background-image: url(/img/access-time-128.png);
+  background-size: 22%;
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 1.5px;
+  background-color: #fff;
+  padding-left: .7em;
+  font-size: 14px;
+  display: inline;
+  border-radius: 0;
+  height: 26px;
+}
+.timepicker:hover {
+  cursor: pointer;
+}
+.item-time {
+  margin: 10px auto;
+}
+input.datepicker {
+  width: 86px;
+  height: 26px;
+  display: inline;
+  border-radius: 0;
+
 }

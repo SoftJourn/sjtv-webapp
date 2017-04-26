@@ -50,7 +50,17 @@
                     <input type="file" name="newImage" id="newImage">
 
                     <div class="newImageDurationDiv">Duration:
-                        <input type="number" class="durationInput" min="1" ma name="newImageDuration" size="2">s
+                        <input type="number" class="durationInput" min="1" name="newImageDuration" size="2">s
+                    </div>
+                    <div class="form-group item-time">
+                        <strong>Time:</strong><br>
+                        From <input type="text" class="timepicker form-control" name="startTime"/>
+                        to <input type="text" class="timepicker form-control" name="endTime"/>
+                    </div>
+                    <div class="form-group item-date">
+                        <strong>Date:</strong><br>
+                        From <input type="text" class="form-control datepicker" name="startDate">
+                        to <input type="text" class="form-control datepicker" name="endDate">
                     </div>
                 </form>
                 <img id="addImagePreview"/>
@@ -163,6 +173,17 @@
             function (res) {
                 $.notify(res.message, res.status);
             });
+    });
+
+    $('.timepicker').timepicker({
+        disableTextInput: true,
+        selectOnBlur: true,
+        timeFormat: 'H:i',
+        step: 15
+    });
+    $('.datepicker').datepicker({
+        autoclose: true,
+        format: "dd:mm:yyyy"
     });
 
     $(document).ready(function () {
