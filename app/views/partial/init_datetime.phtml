@@ -11,4 +11,12 @@ $('#<?php echo $item->id ?> .timepicker[name=startTime]').timepicker('setTime', 
 <?php if($item->endTime): ?>
 $('#<?php echo $item->id ?> .timepicker[name=endTime]').timepicker('setTime', '<?php echo $item->endTime ?>');
 <?php endif ?>
+
+$('#<?php echo $item->id ?> .datepicker').on('change', function (el) {
+$(this).parents('form').submit();
+});
+$('#<?php echo $item->id ?> .timepicker').on('change', function (el) {
+console.log('12');
+$(this).parents('form').submit();
+});
 <?php endforeach; ?>

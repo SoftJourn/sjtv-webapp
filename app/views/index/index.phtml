@@ -130,8 +130,27 @@
                 var newItem = $playlist.first(), newForm = newItem.find('form');
                 setAjaxForm(newForm);
                 makeGallery();
+                initItemDateAndTimePicker(res.itemData);
             }
         });
+    }
+
+    function initItemDateAndTimePicker(itemData) {
+
+        $('#' + itemData.id +' .timepicker').timepicker({
+            selectOnBlur: true,
+            timeFormat: 'H:i',
+            step: 15
+        });
+
+        $('#' + itemData.id +' .datepicker').datepicker({
+            autoclose: true,
+            format: "dd:mm:yyyy"
+        });
+        $('#' + itemData.id +' .datepicker[name=startDate]').datepicker('setDate', itemData.startDate);
+        $('#' + itemData.id +' .datepicker[name=endDate]').datepicker('setDate', itemData.endDate);
+        $('#' + itemData.id +' .datepicker[name=startTime]').datepicker('setDate', itemData.startTime);
+        $('#' + itemData.id +' .datepicker[name=endTime]').datepicker('setDate', itemData.endTime);
     }
 
     $('.submitItem').on('click', function (e) {
@@ -171,9 +190,6 @@
     $playlist.on('blur', '.updateItem', function (el) {
         $(this).parents('form').submit();
     });
-    $playlist.on('change', '.timepicker', function (el) {
-        $(this).parents('form').submit();
-    });
     $('.plDuration').on('blur', function (el) {
         $(this).parents('form').submit();
     });
@@ -200,11 +216,6 @@
     });
 
     {{ partial("partial/init_datetime", items) }}
-
-
-    $playlist.on('change', '.datepicker', function (el) {
-        $(this).parents('form').submit();
-    });
 
     $(document).ready(function () {
         setAjaxForm();

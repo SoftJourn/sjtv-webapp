@@ -65,9 +65,9 @@ class IndexController extends ControllerBase
             $thumbPath = $this->di->get('config')->application->publicDir . Image::$filesDir . 'thumbs/' . $fileName;
             $file->moveTo($path);
 //            if($ext != '.gif') {
-                $thumbnail = new \Phalcon\Image\Adapter\Imagick($path);
-                $thumbnail->resize(320, 180);
-                $thumbnail->save($thumbPath);
+            $thumbnail = new \Phalcon\Image\Adapter\Imagick($path);
+            $thumbnail->resize(320, 180);
+            $thumbnail->save($thumbPath);
 //            } else {
 //                copy($path, $thumbPath);
 //            }
@@ -79,7 +79,8 @@ class IndexController extends ControllerBase
             $result = [
                 'status' => 'success',
                 'message' => 'Item has been added!',
-                'item' => $this->_renderItem($image)
+                'item' => $this->_renderItem($image),
+                'itemData' => $image
             ];
         }
         echo json_encode($result);
@@ -113,7 +114,8 @@ class IndexController extends ControllerBase
         $result = [
             'status' => 'success',
             'message' => 'Item has been added!',
-            'item' => $this->_renderItem($video)
+            'item' => $this->_renderItem($video),
+            'itemData' => $video
         ];
         echo json_encode($result);
     }
