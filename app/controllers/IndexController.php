@@ -16,7 +16,6 @@ class IndexController extends ControllerBase
         $this->view->order = $this->playlist->order;
         $this->view->defaultDuration = $this->playlist->defaultDuration;
         $this->view->items = $this->playlist->items;
-//        var_dump($this->playlist->items);exit;
         $this->view->login = $this->session->get('user')->login;
     }
 

@@ -29,7 +29,7 @@ class FCMNotifications
 
         $fields = [
             'registration_ids' 	=> $this->getTokens(),
-            'notification'			=> $msg
+            'notification' => $msg
         ];
 
         $headers = [
