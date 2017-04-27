@@ -11,3 +11,4 @@ vendor/
 /app/config/users.txt
 composer.lock
 public/playlist.json
+app/config/tokens.txt

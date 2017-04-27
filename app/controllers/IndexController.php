@@ -157,6 +157,28 @@ class IndexController extends ControllerBase
         echo json_encode($result);
     }
 
+    public function playNowAction($id)
+    {
+        $notificationService = new FCMNotifications($this->di->get('config')->FCMApiKey);
+
+        $data = [
+            'videoId' => $id,
+        ];
+
+        if($res = $notificationService->sendPush($data, 'Hello World!')) {
+            $result = [
+                'status' => 'success',
+                'message' => 'Video is playing'
+            ];
+        } else {
+            $result = [
+                'status' => 'error',
+                'message' => 'Error'
+            ];
+        }
+        echo json_encode($result);
+    }
+
     private function _renderItem($item)
     {
         $view = new \Phalcon\Mvc\View\Simple();

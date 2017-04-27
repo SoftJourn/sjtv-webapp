@@ -26,7 +26,7 @@ class Acl extends Component
         $controller = $dispatcher->getControllerName();
         $action = $dispatcher->getActionName();
         $params = $dispatcher->getParams();
-        if ($controller == 'login') {
+        if ($controller == 'login' || $controller == 'devices') {
             return true;
         }
 

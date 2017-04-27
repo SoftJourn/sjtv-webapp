@@ -46,6 +46,8 @@ return new \Phalcon\Config([
             'dn' => '',
             'uid' => 'uid'
         ]
-    ]
+    ],
+    'tokensFile' => APP_PATH . '/config/tokens.txt',
+    'FCMApiKey' => getenv('FCM_API_KEY'),
 
 ]);
