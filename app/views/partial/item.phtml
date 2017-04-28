@@ -28,13 +28,13 @@
                 <?php endif; ?>
                 <div class="form-group item-time">
                     <strong>Time:</strong><br>
-                    From <input type="text" class="timepicker form-control" name="startTime"/>
-                    to <input type="text" class="timepicker form-control" name="endTime"/>
+                    From <input type="text" class="timepicker form-control time start" name="startTime"/>
+                    to <input type="text" class="timepicker form-control " name="endTime"/>
                 </div>
-                <div class="form-group item-date">
+                <div class="form-group item-date" id="date-<?php echo $item->id; ?>">
                     <strong>Date:</strong><br>
-                    From <input type="text" class="form-control datepicker" name="startDate">
-                    to <input type="text" class="form-control datepicker" name="endDate">
+                    From <input type="text" class="form-control datepicker date start" name="startDate">
+                    to <input type="text" class="form-control datepicker date end" name="endDate">
                 </div>
             </form>
         </div>

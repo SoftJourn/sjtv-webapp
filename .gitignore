@@ -7,7 +7,7 @@ app/config/main-sj.php
 /public/uploads/*.jpg
 /public/uploads/*.gif
 vendor/
-.env
+/app/config/config.php
 /app/config/users.txt
 composer.lock
 public/playlist.json
