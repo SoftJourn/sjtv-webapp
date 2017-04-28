@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+use App\Base\UserInterface;
 
 class User implements UserInterface
 {

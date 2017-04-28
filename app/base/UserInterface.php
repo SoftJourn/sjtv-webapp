@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Base;
+
 interface UserInterface {
     /**
      * Check if requested resource is allowed

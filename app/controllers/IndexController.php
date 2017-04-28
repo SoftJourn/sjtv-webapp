@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Playlist,
+    App\Models\Image,
+    App\Models\Youtube,
+    App\Plugins\FCMNotifications;
 
 class IndexController extends ControllerBase
 {

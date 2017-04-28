@@ -1,5 +1,6 @@
 <?php
 
+use App\Base\UserInterface;
 
 class LoginController extends ControllerBase
 {
@@ -23,7 +24,7 @@ class LoginController extends ControllerBase
                 }
                 foreach ($adapters as $type => $data) {
                     if ($data->enabled) {
-                        $adapterClass = 'Auth\\' . $type;
+                        $adapterClass = 'App\Plugins\Auth\\' . $type;
                         /** @var AuthInterface $adapter */
                         $adapter = new $adapterClass($data);
                         $user = $adapter->auth($login, $password);

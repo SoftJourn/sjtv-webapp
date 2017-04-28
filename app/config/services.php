@@ -10,6 +10,8 @@ use Phalcon\Flash\Direct as Flash;
 
 use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 use Phalcon\Events\Manager as EventsManager;
+use App\Plugins\NotFoundException;
+use App\Plugins\Acl;
 
 /**
  * Shared configuration service

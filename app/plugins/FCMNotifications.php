@@ -6,7 +6,7 @@
  * Date: 27.04.17
  * Time: 11:21
  */
-
+namespace App\Plugins;
 use Phalcon\Di;
 
 class FCMNotifications

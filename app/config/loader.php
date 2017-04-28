@@ -8,11 +8,14 @@ $loader = new \Phalcon\Loader();
 
 $loader->registerNamespaces(
     [
-        'App\Plugins' => 'app/plugins/',
-        'Base' => 'app/base/',
-        'App'    => 'app/',
+        'App\Plugins' => APP_PATH . '/plugins/',
+        'App\Plugins\Auth' => APP_PATH . '/plugins/auth',
+        'App\Controllers' => APP_PATH . '/controllers/',
+        'App\Models' => APP_PATH . '/models/',
+        'App\Base' => APP_PATH . '/base/',
     ]
-)->register();
+);
+$loader->register();
 $loader->registerDirs(
     [
         $config->application->controllersDir,

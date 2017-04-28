@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Models;
 use Phalcon\Exception;
 
 

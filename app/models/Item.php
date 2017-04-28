@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Models;
 use Phalcon\Validation\Validator\Date as DateValidator;
 use Phalcon\Validation\Validator;
 

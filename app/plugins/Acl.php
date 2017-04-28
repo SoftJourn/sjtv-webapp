@@ -5,9 +5,11 @@
  * @author Lyubomyr Nykyforuk
  */
 
+namespace App\Plugins;
 use \Phalcon\Events\Event;
 use \Phalcon\Mvc\Dispatcher;
 use \Phalcon\Mvc\User\Component;
+use App\Base\UserInterface;
 
 class Acl extends Component
 {

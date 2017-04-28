@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Models;
 use Phalcon\Di;
 
 class Image extends Item

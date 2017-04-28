@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Plugins;
 use Phalcon\Mvc\User\Component;
 use Phalcon\Events\Event;
 use Phalcon\Mvc\Dispatcher;

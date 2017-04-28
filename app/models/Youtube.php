@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Models;
 
 class Youtube extends Item
 {
