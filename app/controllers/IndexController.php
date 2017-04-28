@@ -160,15 +160,16 @@ class IndexController extends ControllerBase
         echo json_encode($result);
     }
 
-    public function playNowAction($id)
+    public function playNowAction()
     {
         $notificationService = new FCMNotifications($this->di->get('config')->FCMApiKey);
 
         $data = [
-            'videoId' => $id,
+            'url' => $this->request->get('url'),
+            'volumeLevel' => $this->request->get('volume'),
         ];
 
-        if($res = $notificationService->sendPush($data, 'Hello World!')) {
+        if($res = $notificationService->sendPush($data, 'Play Now Video')) {
             $result = [
                 'status' => 'success',
                 'message' => 'Video is playing'
@@ -176,7 +177,7 @@ class IndexController extends ControllerBase
         } else {
             $result = [
                 'status' => 'error',
-                'message' => 'Error'
+                'message' => 'Cannot send Push'
             ];
         }
         echo json_encode($result);

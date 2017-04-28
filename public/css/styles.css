@@ -116,6 +116,6 @@ input.datepicker {
   border-radius: 0;
 
 }
-.playNow:hover {
+.playNow:hover, .playNow:focus{
   text-decoration: none;
 }

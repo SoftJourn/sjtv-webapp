@@ -18,7 +18,9 @@
                                 class="durationInput updateItem" min="1" max="600">s<br>
                 <?php else : ?>
                 <div>
-                    <a href="#" class="playNow" data-url="<?php echo $item->url; ?>"><i class="fa fa-play"></i> Play now</a>
+                    <a href="#" class="playNow" data-url="<?php echo $item->url; ?>"
+                       data-volume="<?php echo $item->volumeLevel; ?>"><i class="fa fa-play"></i> Play now
+                    </a>
                 </div>
                 <label for="volumeLevel">Volume Level</label>
                 <input type="range" min="0" max="100" step="1" name="volumeLevel" id="volumeLevel"
