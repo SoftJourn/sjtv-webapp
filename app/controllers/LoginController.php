@@ -24,7 +24,7 @@ class LoginController extends ControllerBase
                 }
                 foreach ($adapters as $type => $data) {
                     if ($data->enabled) {
-                        $adapterClass = 'App\Plugins\Auth\\' . $type;
+                        $adapterClass = '\App\Plugins\Auth\\' . $type;
                         /** @var AuthInterface $adapter */
                         $adapter = new $adapterClass($data);
                         $user = $adapter->auth($login, $password);

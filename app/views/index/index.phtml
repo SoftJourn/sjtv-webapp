@@ -206,10 +206,9 @@
 
     $playlist.on('click', '.playNow', function (e) {
         if (confirm('Are you sure?')) {
-            console.log($(this).data());
-            var url = $(this).data('url'),
+            var id = $(this).data('id'),
                 volume = $(this).data('volume');
-            $.getJSON('index/playNow?volume=' + volume + '&url=' + url, function (res) {
+            $.getJSON('index/playNow?volume=' + volume + '&id=' + id, function (res) {
                 $.notify(res.message, res.status);
             });
         }

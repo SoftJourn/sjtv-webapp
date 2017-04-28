@@ -165,7 +165,8 @@ class IndexController extends ControllerBase
         $notificationService = new FCMNotifications($this->di->get('config')->FCMApiKey);
 
         $data = [
-            'url' => $this->request->get('url'),
+            'youtubeId' => $this->request->get('id'),
+            'url' => 'https://www.youtube.com/watch?v=' . $this->request->get('id'),
             'volumeLevel' => $this->request->get('volume'),
         ];
 

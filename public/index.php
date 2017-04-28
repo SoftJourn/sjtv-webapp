@@ -13,12 +13,6 @@ try {
     include __DIR__ . '/../vendor/autoload.php';
 
     /**
-     * Environment variables
-     */
-    $dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
-    $dotenv->load();
-
-    /**
      * The FactoryDefault Dependency Injector automatically registers
      * the services that provide a full stack framework.
      */
