@@ -12,3 +12,4 @@ vendor/
 composer.lock
 public/playlist.json
 app/config/tokens.txt
+public/parking
