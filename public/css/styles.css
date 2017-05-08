@@ -119,3 +119,7 @@ input.datepicker {
 .playNow:hover, .playNow:focus{
   text-decoration: none;
 }
+
+.playNext {
+  margin: auto 10px;
+}

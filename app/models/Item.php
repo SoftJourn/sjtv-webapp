@@ -15,6 +15,7 @@ class Item
     public $endTime;
     public $startDate;
     public $endDate;
+    public $status = 'enabled';
 
     public function __construct($type, $owner, $created = null)
     {

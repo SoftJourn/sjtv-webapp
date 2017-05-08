@@ -21,6 +21,7 @@ class IndexController extends ControllerBase
         $this->view->defaultDuration = $this->playlist->defaultDuration;
         $this->view->items = $this->playlist->items;
         $this->view->login = $this->session->get('user')->login;
+        $this->view->status = $this->request->get('status') ?? 'enabled';
     }
 
     public function updateConfigAction()
@@ -174,6 +175,28 @@ class IndexController extends ControllerBase
             $result = [
                 'status' => 'success',
                 'message' => 'Video is playing'
+            ];
+        } else {
+            $result = [
+                'status' => 'error',
+                'message' => 'Cannot send Push'
+            ];
+        }
+        echo json_encode($result);
+    }
+
+    public function  playNextAction()
+    {
+        $notificationService = new FCMNotifications($this->di->get('config')->FCMApiKey);
+
+        $data = [
+            'playNext' => true,
+        ];
+
+        if($res = $notificationService->sendPush($data, 'Play Next')) {
+            $result = [
+                'status' => 'success',
+                'message' => 'Done!'
             ];
         } else {
             $result = [
