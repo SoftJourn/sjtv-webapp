@@ -15,13 +15,14 @@ class Item
     public $endTime;
     public $startDate;
     public $endDate;
-    public $status = 'enabled';
+    public $enabled;
 
-    public function __construct($type, $owner, $created = null)
+    public function __construct($type, $owner, $enabled = true, $created = null)
     {
         $this->id = uniqid();
         $this->type = $type;
         $this->owner = $owner;
+        $this->enabled = $enabled;
         $this->created = ($created ? $created : time());
     }
 

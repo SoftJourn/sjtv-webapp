@@ -76,7 +76,9 @@ class IndexController extends ControllerBase
                 copy($path, $thumbPath);
             }
 
-            $image = new Image($fileName, $owner, $this->request->getPost('newImageDuration'));
+            $enabled = boolval(strtolower($this->request->getPost('enabled')) == 'on');
+
+            $image = new Image($fileName, $owner, $enabled, $this->request->getPost('newImageDuration'));
             $image->setDateAndTime($this->request->getPost());
             $this->playlist->addItem($image, true);
             $this->playlist->save();
@@ -103,7 +105,10 @@ class IndexController extends ControllerBase
             echo json_encode($result);
             return;
         }
-        $video = new Youtube($url, $owner, $volumeLevel);
+
+        $enabled = (strtolower($this->request->getPost('enabled')) == 'on');
+
+        $video = new Youtube($url, $owner, $enabled, $volumeLevel);
         if (!$video->id) {
             $result = [
                 'status' => 'error',
@@ -211,7 +216,8 @@ class IndexController extends ControllerBase
     {
         $view = new \Phalcon\Mvc\View\Simple();
         $view->setViewsDir(APP_PATH . "/views/partial/");
-        $html = $view->render('item', ['item' => $item]);
+        $status = $this->request->get('status') ?? 'enabled';
+        $html = $view->render('item', ['item' => $item, 'status' => $status]);
         return $html;
     }
 }

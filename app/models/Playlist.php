@@ -38,6 +38,7 @@ class Playlist
                 $objectItem->endDate = $item->endDate;
                 $objectItem->startTime = $item->startTime;
                 $objectItem->endTime = $item->endTime;
+                $objectItem->enabled = $item->enabled;
                 $this->addItem($objectItem);
 
             }

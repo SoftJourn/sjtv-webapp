@@ -59,9 +59,13 @@
             </div>
             <div class="modal-body">
                 <form id="imageUploadForm" action="index/addImage" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="newImage" id="newImage">
+                    <input type="file" name="newImage" id="newImage" max-size="">
                     <div class="newImageDurationDiv">Duration:
                         <input type="number" class="durationInput" min="1" name="newImageDuration" size="2">s
+                    </div>
+                    <div class="itemStatus">
+                        <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled" name="enabled"
+                               checked data-width="94" class="form-control">
                     </div>
                     <div class="form-group item-time timepair-container">
                         <strong>Time:</strong><br>
@@ -94,7 +98,10 @@
             <div class="modal-body">
                 <form id="videoUploadForm" action="index/addYoutube" method="POST" class="form-group">
                     <input type="text" name="youtubeURL" class="form-control" placeholder="Video URL">
-                    <br>
+                    <div class="itemStatus">
+                        <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled" name="enabled"
+                               checked data-width="94" class="form-control">
+                    </div>
                     <label for="volumeLevel">Volume Level</label>
                     <input type="range" min="0" max="100" step="1" name="volumeLevel" id="volumeLevel"/>
                     <div class="form-group item-time timepair-container">
@@ -149,20 +156,20 @@
 
     function initItemDateAndTimePicker(itemData) {
 
-        $('#' + itemData.id +' .timepicker').timepicker({
+        $('#' + itemData.id + ' .timepicker').timepicker({
             selectOnBlur: true,
             timeFormat: 'H:i',
             step: 15
         });
 
-        $('#' + itemData.id +' .datepicker').datepicker({
+        $('#' + itemData.id + ' .datepicker').datepicker({
             autoclose: true,
             format: "dd:mm:yyyy"
         });
-        $('#' + itemData.id +' .datepicker[name=startDate]').datepicker('setDate', itemData.startDate);
-        $('#' + itemData.id +' .datepicker[name=endDate]').datepicker('setDate', itemData.endDate);
-        $('#' + itemData.id +' .timepicker[name=startTime]').timepicker('setTime', itemData.startTime);
-        $('#' + itemData.id +' .timepicker[name=endTime]').timepicker('setTime', itemData.endTime);
+        $('#' + itemData.id + ' .datepicker[name=startDate]').datepicker('setDate', itemData.startDate);
+        $('#' + itemData.id + ' .datepicker[name=endDate]').datepicker('setDate', itemData.endDate);
+        $('#' + itemData.id + ' .timepicker[name=startTime]').timepicker('setTime', itemData.startTime);
+        $('#' + itemData.id + ' .timepicker[name=endTime]').timepicker('setTime', itemData.endTime);
 
         $('.timepair-container').datepair({
             timeClass: 'timepicker',

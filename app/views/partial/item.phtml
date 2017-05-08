@@ -1,3 +1,4 @@
+<?php if(($status != 'disabled') == $item->enabled): ?>
 <div class="col-xs-6 col-md-4">
     <div class="listItem" data-id="<?php echo $item->id; ?>" id="<?php echo $item->id; ?>">
         <?php if ($item->type == 'image') { ?>
@@ -44,3 +45,4 @@
         </div>
     </div>
 </div>
+<?php endif; ?>

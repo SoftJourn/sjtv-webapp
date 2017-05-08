@@ -18,9 +18,9 @@ class Image extends Item
     ];
     protected $_file;
 
-    public function __construct($file, $owner, $duration = null, $created = null)
+    public function __construct($file, $owner, $enabled = true, $duration = null, $created = null)
     {
-        parent::__construct('image', $owner);
+        parent::__construct('image', $owner, $enabled);
         $this->_file = $file;
         $this->url = Di::getDefault()->get('config')->application->baseUri . self::$filesDir . $file;
         $this->thumbnail = Di::getDefault()->get('config')->application->baseUri . self::$filesDir . 'thumbs/' . $file;
