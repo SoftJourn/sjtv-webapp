@@ -23,15 +23,10 @@
 
 <button type="button" class="btn btn-info playNext">Play next</button>
 <div class="btn-group">
-    <button type="button" id="dLabel" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false">
-        Show <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu addItem" aria-labelledby="dLabel">
-        <li><a href="/?status=enabled">Enabled</a></li>
-        <li><a href="/?status=disabled">Disabled</a></li>
-    </ul>
+    <div class="playlistStatus">
+        <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled" name="enabled"
+               {% if status != 'disabled' %} checked {% endif %} data-width="94" class="form-control">
+    </div>
 </div>
 <div class="btn-group playlistOptions">
     <form action="index/updateConfig" method="post">
@@ -241,6 +236,16 @@
             });
         }
         return false;
+    });
+    $('.playlistStatus input').change(function() {
+        var that = this;
+        setTimeout(function(){
+            if($(that).prop('checked')) {
+                window.location = '/?status=enabled';
+            } else {
+                window.location = '/?status=disabled';
+            }
+        }, 500);
     });
 
     $playlist.on('click', '.itemSettings', function (e) {
