@@ -166,6 +166,40 @@ class IndexController extends ControllerBase
         echo json_encode($result);
     }
 
+    public function enableItemAction($id)
+    {
+        if ($this->playlist->updateItem($id, ['enabled' => true])) {
+            $this->playlist->save();
+            $result = [
+                'status' => 'success',
+                'message' => 'Item has been enabled'
+            ];
+        } else {
+            $result = [
+                'status' => 'error',
+                'message' => 'Item not found'
+            ];
+        }
+        echo json_encode($result);
+    }
+
+    public function disableItemAction($id)
+    {
+        if ($this->playlist->updateItem($id, ['enabled' => false])) {
+            $this->playlist->save();
+            $result = [
+                'status' => 'success',
+                'message' => 'Item has been disabled'
+            ];
+        } else {
+            $result = [
+                'status' => 'error',
+                'message' => 'Item not found'
+            ];
+        }
+        echo json_encode($result);
+    }
+
     public function playNowAction()
     {
         $notificationService = new FCMNotifications($this->di->get('config')->FCMApiKey);

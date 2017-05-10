@@ -216,6 +216,33 @@
         }
         return false;
     });
+
+    $playlist.on('click', '.enableItem', function (e) {
+        if (confirm('Are you sure?')) {
+            var $this = $(this), id = $this.parents('.listItem').attr('data-id');
+            $.getJSON('index/enableItem/' + id, function (res) {
+                $.notify(res.message, res.status);
+                if (res.status == 'success') {
+                    $this.parents('.listItem').parent().remove();
+                }
+            });
+        }
+        return false;
+    });
+
+    $playlist.on('click', '.disableItem', function (e) {
+        if (confirm('Are you sure?')) {
+            var $this = $(this), id = $this.parents('.listItem').attr('data-id');
+            $.getJSON('index/disableItem/' + id, function (res) {
+                $.notify(res.message, res.status);
+                if (res.status == 'success') {
+                    $this.parents('.listItem').parent().remove();
+                }
+            });
+        }
+        return false;
+    });
+
     $playlist.on('click', '.itemSettings', function (e) {
         $(this).parents('.listItem').find('.settings').toggleClass('hidden');
         return false;

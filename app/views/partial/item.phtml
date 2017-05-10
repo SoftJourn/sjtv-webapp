@@ -42,6 +42,11 @@
         <div class=" icons">
             <a href="#" class="removeItem"><i class="fa fa-trash"></i></a>
             <a href="#" class="itemSettings"><i class="fa fa-cog"></i></a>
+            <?php if($item->enabled): ?>
+            <a href="#" class="disableItem"><i class="fa fa-stop-circle"></i></a>
+            <?php else: ?>
+            <a href="#" class="enableItem"><i class="fa fa-play-circle"></i></a>
+            <?php endif; ?>
         </div>
     </div>
 </div>
