@@ -24,14 +24,14 @@ class Playlist
                 switch ($item->type) {
                     case 'image':
                         $file = basename($item->url);
-                        $objectItem = new Image($file, $item->owner, $item->duration, $item->created);
+                        $objectItem = new Image($file, $item->owner, $item->enabled, $item->duration, $item->created);
                         if ($item->id) {
                             $objectItem->id = $item->id;
                         }
                         break;
 
                     case 'youtube':
-                        $objectItem = new Youtube($item->url, $item->owner, $item->volumeLevel, $item->created);
+                        $objectItem = new Youtube($item->url, $item->owner, $item->enabled, $item->volumeLevel, $item->created);
                         break;
                 }
                 $objectItem->startDate = $item->startDate;
