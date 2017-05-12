@@ -37,6 +37,9 @@ class Playlist
 
                     case 'facebook_post':
                         $objectItem = new Post($item->url, $item->owner, $item->enabled, $item->duration, $item->created);
+                        if ($item->id) {
+                            $objectItem->id = $item->id;
+                        }
                         break;
                 }
                 $objectItem->startDate = $item->startDate;
