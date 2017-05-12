@@ -1,3 +1,5 @@
+<script src="//connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.5"
+        async></script>
 <h2 class="text-center">Softjourn Info TV Playlist</h2>
 <div class="userLogin">
     Welcome, {{ login }}! <a href="login/logout">Log out</a>
@@ -15,9 +17,17 @@
             aria-expanded="false">
         add item <span class="caret"></span>
     </button>
-    <ul class="dropdown-menu addItem" aria-labelledby="dLabel">
+    <ul class="dropdown-menu addItem multi-level" aria-labelledby="dLabel">
         <li><a href="#" data-toggle="modal" data-backdrop="static" data-target="#addImage">Image</a></li>
         <li><a href="#" data-toggle="modal" data-backdrop="static" data-target="#addYoutube">Youtube</a></li>
+        <li class="dropdown-submenu">
+            <a class="test" tabindex="-1" href="#">Facebook</a>
+            <ul class="dropdown-menu addItem" aria-labelledby="dLabel">
+                <li><a href="#" data-toggle="modal" data-backdrop="static" data-target="#addFacebookPost">Post</a></li>
+                <li><a href="#" data-toggle="modal" data-backdrop="static" data-target="#addFacebookVideo">Video</a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>
 
@@ -25,7 +35,7 @@
 <div class="btn-group">
     <div class="playlistStatus">
         <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled" name="enabled"
-               {% if status != 'disabled' %} checked {% endif %} data-width="94" class="form-control">
+                {% if status != 'disabled' %} checked {% endif %} data-width="94" class="form-control">
     </div>
 </div>
 <div class="btn-group playlistOptions">
@@ -119,6 +129,79 @@
     </div>
 </div>
 
+<div class="modal fade" id="addFacebookVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Facebook video</h4>
+            </div>
+            <div class="modal-body">
+                <form id="videoUploadForm" action="index/addYoutube" method="POST" class="form-group">
+                    <input type="text" name="youtubeURL" class="form-control" placeholder="Video URL">
+                    <div class="itemStatus">
+                        <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled" name="enabled"
+                               checked data-width="94" class="form-control">
+                    </div>
+                    <label for="volumeLevel">Volume Level</label>
+                    <input type="range" min="0" max="100" step="1" name="volumeLevel" id="volumeLevel"/>
+                    <div class="form-group item-time timepair-container">
+                        <strong>Time:</strong><br>
+                        From <input type="text" class="timepicker form-control startTime" name="startTime"/>
+                        to <input type="text" class="timepicker form-control endTime" name="endTime"/>
+                    </div>
+                    <div class="form-group item-date datepair-container">
+                        <strong>Date:</strong><br>
+                        From <input type="text" class="form-control datepicker startDate" name="startDate">
+                        to <input type="text" class="form-control datepicker endDate" name="endDate">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary submitItem">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addFacebookPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Facebook Post</h4>
+            </div>
+            <div class="modal-body">
+                <form id="facebookPost" action="index/addFacebookPost" method="POST" class="form-group">
+                    <input type="text" name="url" class="form-control" placeholder="Post URL">
+                    <div class="newPostDurationDiv">Duration:
+                        <input type="number" class="durationInput" min="1" name="newImageDuration" size="2">s
+                    </div>
+                    <div class="itemStatus">
+                        <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled" name="enabled"
+                               checked data-width="94" class="form-control">
+                    </div>
+                    <div class="form-group item-time timepair-container">
+                        <strong>Time:</strong><br>
+                        From <input type="text" class="timepicker form-control startTime" name="startTime"/>
+                        to <input type="text" class="timepicker form-control endTime" name="endTime"/>
+                    </div>
+                    <div class="form-group item-date datepair-container">
+                        <strong>Date:</strong><br>
+                        From <input type="text" class="form-control datepicker startDate" name="startDate">
+                        to <input type="text" class="form-control datepicker endDate" name="endDate">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary submitItem">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     var $playlist = $('.playlist');
 
@@ -142,6 +225,7 @@
             if (res.item) {
                 $playlist.prepend(res.item);
                 var newItem = $playlist.first(), newForm = newItem.find('form');
+                FB.XFBML.parse(document.body);
                 setAjaxForm(newForm);
                 makeGallery();
                 initItemDateAndTimePicker(res.itemData);
@@ -237,10 +321,10 @@
         }
         return false;
     });
-    $('.playlistStatus input').change(function() {
+    $('.playlistStatus input').change(function () {
         var that = this;
-        setTimeout(function(){
-            if($(that).prop('checked')) {
+        setTimeout(function () {
+            if ($(that).prop('checked')) {
                 window.location = '/?status=enabled';
             } else {
                 window.location = '/?status=disabled';

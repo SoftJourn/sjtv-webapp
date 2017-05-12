@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Facebook\Post;
 use Phalcon\Exception;
 
 
@@ -32,6 +33,10 @@ class Playlist
 
                     case 'youtube':
                         $objectItem = new Youtube($item->url, $item->owner, $item->enabled, $item->volumeLevel, $item->created);
+                        break;
+
+                    case 'facebook_post':
+                        $objectItem = new Post($item->url, $item->owner, $item->enabled, $item->duration, $item->created);
                         break;
                 }
                 $objectItem->startDate = $item->startDate;

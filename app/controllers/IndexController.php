@@ -3,7 +3,8 @@
 use App\Models\Playlist,
     App\Models\Image,
     App\Models\Youtube,
-    App\Plugins\FCMNotifications;
+    App\Plugins\FCMNotifications,
+    App\Models\Facebook\Post;
 
 class IndexController extends ControllerBase
 {
@@ -125,6 +126,35 @@ class IndexController extends ControllerBase
             'message' => 'Item has been added!',
             'item' => $this->_renderItem($video),
             'itemData' => $video
+        ];
+        echo json_encode($result);
+    }
+
+    public function addFacebookPostAction()
+    {
+        $owner = $this->session->get('user')->login;
+        $url = $this->request->getPost('url');
+        $duration = $this->request->getPost('newImageDuration');
+
+        $enabled = (strtolower($this->request->getPost('enabled')) == 'on');
+
+        $facebookPost = new Post($url, $owner, $enabled, $duration);
+        if (!$facebookPost->id) {
+            $result = [
+                'status' => 'error',
+                'message' => 'Video URL is invalid!'
+            ];
+            echo json_encode($result);
+            return;
+        }
+        $facebookPost->setDateAndTime($this->request->getPost());
+        $this->playlist->addItem($facebookPost, true);
+        $this->playlist->save();
+        $result = [
+            'status' => 'success',
+            'message' => 'Item has been added!',
+            'item' => $this->_renderItem($facebookPost),
+            'itemData' => $facebookPost
         ];
         echo json_encode($result);
     }

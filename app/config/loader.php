@@ -12,6 +12,7 @@ $loader->registerNamespaces(
         'App\Plugins\Auth' => APP_PATH . '/plugins/auth',
         'App\Controllers' => APP_PATH . '/controllers/',
         'App\Models' => APP_PATH . '/models/',
+        'App\Models\Facebook' => APP_PATH . '/models/facebook',
         'App\Base' => APP_PATH . '/base/',
     ]
 );

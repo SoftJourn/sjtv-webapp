@@ -5,10 +5,15 @@
         <a rel="sjtv" href="<?php echo $item->url; ?>" class="gallery">
             <img src="<?php echo $item->thumbnail; ?>" alt="">
         </a>
-        <?php } ?>
-        <?php if ($item->type == 'youtube') { ?>
+        <?php } elseif ($item->type == 'youtube') { ?>
         <iframe width="100%" height="100%" src="https://www.youtube.com/embed/<?php echo $item->id; ?>" frameborder="0"
                 allowfullscreen></iframe>
+        <?php } elseif ($item->type == 'facebook_post') { ?>
+        <div class="fb-post"
+             data-href="<?php echo $item->url; ?>"
+             data-width="auto"
+             data-show-text="false">
+        </div>
         <?php } ?>
         <div class="settings hidden">
             <form action="index/updateItem/<?php echo $item->id; ?>" method="post">
@@ -17,7 +22,7 @@
                 <?php if ($item->type == 'image') : ?>
                 Display: <input type="number" name="duration" value="<?php echo $item->duration; ?>"
                                 class="durationInput updateItem" min="1" max="600">s<br>
-                <?php else : ?>
+                <?php elseif ($item->type == 'youtube') : ?>
                 <div>
                     <a href="#" class="playNow" data-id="<?php echo $item->id; ?>"
                        data-volume="<?php echo $item->volumeLevel; ?>"><i class="fa fa-play"></i> Play now
@@ -26,6 +31,9 @@
                 <label for="volumeLevel">Volume Level</label>
                 <input type="range" min="0" max="100" step="1" name="volumeLevel" id="volumeLevel"
                        class="updateItem" value="<?php echo $item->volumeLevel; ?>"/>
+                <?php elseif ($item->type == 'facebook_post') : ?>
+                Display: <input type="number" name="duration" value="<?php echo $item->duration; ?>"
+                                class="durationInput updateItem" min="1" max="600">s<br>
                 <?php endif; ?>
                 <div class="form-group item-time timepair-container">
                     <strong>Time:</strong><br>
