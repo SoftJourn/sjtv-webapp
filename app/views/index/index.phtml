@@ -135,11 +135,11 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add Facebook video</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Facebook Video</h4>
             </div>
             <div class="modal-body">
-                <form id="videoUploadForm" action="index/addYoutube" method="POST" class="form-group">
-                    <input type="text" name="youtubeURL" class="form-control" placeholder="Video URL">
+                <form id="facebookPost" action="index/addFacebookVideo" method="POST" class="form-group">
+                    <input type="text" name="url" class="form-control" placeholder="Video URL">
                     <div class="itemStatus">
                         <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled" name="enabled"
                                checked data-width="94" class="form-control">
@@ -156,7 +156,6 @@
                         From <input type="text" class="form-control datepicker startDate" name="startDate">
                         to <input type="text" class="form-control datepicker endDate" name="endDate">
                     </div>
-
                 </form>
             </div>
             <div class="modal-footer">

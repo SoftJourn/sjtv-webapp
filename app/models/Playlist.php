@@ -2,6 +2,7 @@
 
 namespace App\Models;
 use App\Models\Facebook\Post;
+use App\Models\Facebook\Video;
 use Phalcon\Exception;
 
 
@@ -37,6 +38,13 @@ class Playlist
 
                     case 'facebook_post':
                         $objectItem = new Post($item->url, $item->owner, $item->enabled, $item->duration, $item->created);
+                        if ($item->id) {
+                            $objectItem->id = $item->id;
+                        }
+                        break;
+
+                    case 'facebook_video':
+                        $objectItem = new Video($item->url, $item->owner, $item->volumeLevel, $item->enabled, $item->created);
                         if ($item->id) {
                             $objectItem->id = $item->id;
                         }

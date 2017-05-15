@@ -34,7 +34,7 @@ class Acl extends Component
 
         $user = $this->session->get('user');
         if (!($user instanceof UserInterface)) {
-            $this->response->redirect("/login/auth?r2=" . $_GET["_url"], true);
+            $this->response->redirect("/login/auth?r2=" . $_GET["_url"] ?? '', true);
             return false;
         }
 

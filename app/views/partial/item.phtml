@@ -14,6 +14,12 @@
              data-width="auto"
              data-show-text="false">
         </div>
+        <?php } elseif ($item->type == 'facebook_video') { ?>
+        <div class="fb-video"
+             data-href="<?php echo $item->url; ?>"
+             data-width="auto"
+             data-show-text="false">
+        </div>
         <?php } ?>
         <div class="settings hidden">
             <form action="index/updateItem/<?php echo $item->id; ?>" method="post">
@@ -22,7 +28,7 @@
                 <?php if ($item->type == 'image') : ?>
                 Display: <input type="number" name="duration" value="<?php echo $item->duration; ?>"
                                 class="durationInput updateItem" min="1" max="600">s<br>
-                <?php elseif ($item->type == 'youtube') : ?>
+                <?php elseif ($item->type == 'youtube' || $item->type == 'facebook_video' ) : ?>
                 <div>
                     <a href="#" class="playNow" data-id="<?php echo $item->id; ?>"
                        data-volume="<?php echo $item->volumeLevel; ?>"><i class="fa fa-play"></i> Play now

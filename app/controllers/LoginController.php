@@ -30,7 +30,7 @@ class LoginController extends ControllerBase
                         $user = $adapter->auth($login, $password);
                         if ($user instanceof UserInterface) {
                             $this->session->set("user", $user);
-                            $redirect = $this->request->getQuery("r2") ?: $this->di->get('config')->appication->baseUri;
+                            $redirect = $this->request->getQuery("r2") ?: $this->di->get('config')->application->baseUri;
                             return $this->response->redirect($redirect, true);
                         }
                     }
@@ -47,7 +47,7 @@ class LoginController extends ControllerBase
     public function logoutAction()
     {
         $this->session->destroy();
-        $this->response->redirect($this->di->get('config')->appication->baseUri, true);
+        $this->response->redirect($this->di->get('config')->application->baseUri, true);
     }
 
 }
