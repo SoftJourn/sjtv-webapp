@@ -28,7 +28,7 @@ class Acl extends Component
         $controller = $dispatcher->getControllerName();
         $action = $dispatcher->getActionName();
         $params = $dispatcher->getParams();
-        if ($controller == 'login' || $controller == 'devices') {
+        if (in_array($controller, ['login', 'devices', 'api_playlist', 'api_login'])) {
             return true;
         }
 

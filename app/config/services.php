@@ -12,6 +12,7 @@ use Phalcon\Mvc\Dispatcher as MvcDispatcher;
 use Phalcon\Events\Manager as EventsManager;
 use App\Plugins\NotFoundException;
 use App\Plugins\Acl;
+use Firebase\JWT\JWT;
 
 /**
  * Shared configuration service
@@ -137,5 +138,26 @@ $di->set(
         $dispatcher->setEventsManager($eventsManager);
 
         return $dispatcher;
+    }
+);
+
+$di->set(
+    "jwt",
+    function () {
+        $key = "example_key";
+        $token = array(
+            "iss" => "http://example.org",
+            "aud" => "http://example.com",
+            "iat" => 1356999524,
+            "nbf" => 1357000000
+        );
+
+        $jwt = $this->get('request')->get('token');
+
+//        var_dump($this->get('request')->get('token'));
+//        die();
+
+        echo JWT::decode($jwt, $key, array('HS256')); die();
+
     }
 );
