@@ -1,7 +1,13 @@
 <?php
+
+use Phalcon\Di\FactoryDefault\Cli as CliDI;
+use Phalcon\Cli\Console as ConsoleApp;
+use Phalcon\Loader;
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL ^ E_NOTICE ^ E_DEPRECATED);
 mb_internal_encoding('UTF-8');
+
 
 // define root path:
 defined('ROOT') || define('ROOT', __DIR__ . '/');
@@ -11,17 +17,48 @@ $env = getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production';
 defined('APP_ENV') || define('APP_ENV', $env);
 
 // application bootstrap file:
-require_once(ROOT . 'Application.php');
+// Using the CLI factory default services container
+$di = new CliDI();
 
-// init and run application:
-$application = new Application();
-$application->bootstrap();
+
+
+/**
+ * Register the autoloader and tell it to register the tasks directory
+ */
+$loader = new Loader();
+
+$loader->registerDirs(
+    [
+        __DIR__ . "/tasks",
+    ]
+);
+
+$loader->register();
+
+
+
+// Load the configuration file (if any)
+
+$configFile = __DIR__ . "/app/config/config.php";
+
+if (is_readable($configFile)) {
+    $config = include $configFile;
+
+    $di->set("config", $config);
+}
+
+include __DIR__ . '/app/config/loader.php';
+
+// Create a console application
+$console = new ConsoleApp();
+
+$console->setDI($di);
 
 $operation = $argv[1];
 $user = $argv[2];
 $password = $argv[3];
 
-$data = $application->di->getShared('config')->auth->File;
+$data = $di->getShared('config')->auth->File;
 $adapter = new \App\Plugins\Auth\File($data);
 
 switch ($operation) {

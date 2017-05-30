@@ -157,10 +157,10 @@ $di->set(
 
 $di->set(
     "jwt",
-    function () {
-        //todo config
-        $key = $this->di->get('config')->apiKey;
+    function () use ($di) {
+        $key = $di->get('config')->apiKey;
         $jwt = $this->get('request')->get('token');
-        return JWT::decode($jwt, $key, array('HS256'));
+
+        return JWT::decode($jwt, $key, ['HS256']);
     }
 );

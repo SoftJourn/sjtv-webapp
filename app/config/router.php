@@ -10,7 +10,7 @@ $router->add(
     "/",
     [
         "controller" => "index",
-        "action"     => "index",
+        "action" => "index",
     ]
 );
 
@@ -26,9 +26,23 @@ $router->add(
 $router->notFound(
     [
         "controller" => "index",
-        "action"     => "notFound",
+        "action" => "notFound",
     ]
 );
 
+$api = new \Phalcon\Mvc\Router\Group();
+$api->setPrefix('/api')
+    ->addPost(
+        '/login',
+        [
+            'namespace' => 'App\Controllers\Api',
+            'controller' => 'login',
+            'action' => 'index',
+        ]
+    )
+//    ->addGet()
+;
+;
+$router->mount($api);
 $router->handle();
 

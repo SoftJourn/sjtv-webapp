@@ -28,15 +28,14 @@ class Acl extends Component
         $controller = $dispatcher->getControllerName();
         $action = $dispatcher->getActionName();
         $params = $dispatcher->getParams();
-        if (in_array($controller, ['login', 'devices', 'api_login'])) {
+        $namespace = $dispatcher->getNamespaceName();
+
+
+        if (in_array($controller, ['login', 'devices'])) {
             return true;
         }
 
-        if($controller == 'api_playlist' && $action == 'index' ) {
-            return true;
-        }
-
-        if (in_array($controller, ['api_playlist'])) {
+        if ($namespace == 'App\Controllers\Api') {
             return $this->jwt;
         }
 

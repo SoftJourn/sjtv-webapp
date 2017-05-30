@@ -1,9 +1,11 @@
 <?php
 
+namespace App\Controllers\Api;
+
 use App\Models\Playlist;
 use Phalcon\Di;
 
-class ApiPlaylistController extends  ApiControllerBase
+class PlaylistController extends  ControllerBase
 {
 
     /** @var  Playlist $playlist */

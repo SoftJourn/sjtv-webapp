@@ -1,8 +1,10 @@
 <?php
 
+namespace App\Controllers\Api;
+
 use Phalcon\Mvc\Controller;
 
-class ApiControllerBase extends Controller
+class ControllerBase extends Controller
 {
     public function send($data) {
         $this->view->disable();
