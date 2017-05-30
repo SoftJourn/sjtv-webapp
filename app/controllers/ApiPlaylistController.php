@@ -3,7 +3,7 @@
 use App\Models\Playlist;
 use Phalcon\Di;
 
-class ApiPlaylistController extends ApiControllerBase
+class ApiPlaylistController extends  ApiControllerBase
 {
 
     /** @var  Playlist $playlist */
@@ -16,10 +16,7 @@ class ApiPlaylistController extends ApiControllerBase
     }
 
     public function indexAction(){
-        $this->result($this->playlist->getItems());
+        return $this->send($this->playlist->getItems());
     }
 
-    public function addAction(){
-
-    }
 }

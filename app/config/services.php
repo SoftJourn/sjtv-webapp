@@ -133,6 +133,20 @@ $di->set(
             new Acl()
         );
 
+        $eventsManager->attach(
+            "dispatch:beforeException",
+            function($event, $dispatcher, $exception)
+            {
+                if ($exception instanceof \Firebase\JWT\BeforeValidException) {
+
+                    die('BeforeValidException');
+
+                    //todo:: !!!!!
+
+                }
+            }
+        );
+
         $dispatcher = new MvcDispatcher();
 
         $dispatcher->setEventsManager($eventsManager);
@@ -144,20 +158,9 @@ $di->set(
 $di->set(
     "jwt",
     function () {
-        $key = "example_key";
-        $token = array(
-            "iss" => "http://example.org",
-            "aud" => "http://example.com",
-            "iat" => 1356999524,
-            "nbf" => 1357000000
-        );
-
+        //todo config
+        $key = $this->di->get('config')->apiKey;
         $jwt = $this->get('request')->get('token');
-
-//        var_dump($this->get('request')->get('token'));
-//        die();
-
-        echo JWT::decode($jwt, $key, array('HS256')); die();
-
+        return JWT::decode($jwt, $key, array('HS256'));
     }
 );

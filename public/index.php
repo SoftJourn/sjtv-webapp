@@ -1,4 +1,7 @@
 <?php
+
+ini_set('display_errors', true);
+
 use Phalcon\Di\FactoryDefault;
 
 error_reporting(E_ALL);

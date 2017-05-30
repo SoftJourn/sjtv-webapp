@@ -3,3 +3,18 @@
 	RewriteRule  ^$ public/    [L]
 	RewriteRule  (.*) public/$1 [L]
 </IfModule>
+
+
+<IfModule mod_rewrite.c>
+  Header add Access-Control-Allow-Origin "*"
+  Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
+  Header add Access-Control-Allow-Headers: "Content-Type"
+
+  RewriteEngine on
+  RewriteBase /
+</IfModule>
+
+php_flag display_startup_errors on
+php_flag display_errors on
+php_flag html_errors on
+php_flag  log_errors on
