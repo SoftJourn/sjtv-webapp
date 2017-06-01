@@ -47,9 +47,9 @@ class Item
 
     public function setDateAndTime($data)
     {
-        $this->startDate = $data['startDate'];
-        $this->endDate = $data['endDate'];
-        $this->startTime = $data['startTime'];
-        $this->endTime = $data['endTime'];
+        $this->startDate = $data['startDate'] ?? Null;
+        $this->endDate = $data['endDate'] ?? Null;
+        $this->startTime = $data['startTime'] ?? Null;
+        $this->endTime = $data['endTime'] ?? Null;
     }
 } 

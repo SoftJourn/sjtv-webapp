@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use App\Models\Facebook\Post;
 use Phalcon\Exception;
 
@@ -67,6 +68,14 @@ class Playlist
         return $this->items;
     }
 
+    public function getSettings()
+    {
+        return [
+            'defaultDuration' => $this->defaultDuration,
+            'order' => $this->order,
+        ];
+    }
+
     public function getItemPosition($id)
     {
         foreach ($this->items as $position => $item) {
@@ -95,18 +104,22 @@ class Playlist
                     $defaultDuration = floatval($value);
                     if ($defaultDuration > 0) {
                         $this->defaultDuration = $defaultDuration;
-                        return $this->save();
+                        if (!$this->save())
+                            return false;
                     }
                     return false;
                 case 'order':
-                    if($value == 'true') {
+                    if ($value == 'true') {
                         $this->order = 'random';
                     } else {
                         $this->order = 'date';
                     }
-                    return $this->save();
+                    if (!$this->save())
+                        return false;
             }
         }
+
+        return true;
 
     }
 

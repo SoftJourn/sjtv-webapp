@@ -12,9 +12,9 @@ class Youtube extends Item
     public function __construct($url, $owner, $enabled = true, $volumeLevel, $created = null)
     {
         parent::__construct('youtube', $owner, $enabled, $created);
-        $this->url = $url;
-        parse_str(parse_url($url, PHP_URL_QUERY), $query);
-        $this->id = $query['v'];
+        preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $url, $match);
+        $this->id = $match[1] ?? false;
+        $this->url = 'https://www.youtube.com/watch?v=' . $this->id;
         $this->volumeLevel = $volumeLevel;
     }
 
