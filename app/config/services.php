@@ -159,8 +159,7 @@ $di->set(
     "jwt",
     function () use ($di) {
         $key = $di->get('config')->apiKey;
-        $jwt = $di->get('request')->getHeader('JWTAuthorization');
-
+        $jwt = $di->get('request')->getHeader('token');
         return JWT::decode($jwt, $key, ['HS256']);
     }
 );

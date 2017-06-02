@@ -1,14 +1,13 @@
 <IfModule mod_rewrite.c>
 	RewriteEngine on
+	RewriteCond %{HTTP:Authorization} ^(.*)
+        RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
 	RewriteRule  ^$ public/    [L]
 	RewriteRule  (.*) public/$1 [L]
-</IfModule>
 
-
-<IfModule mod_rewrite.c>
-  Header add Access-Control-Allow-Origin "*"
+    Header add Access-Control-Allow-Origin "*"
   Header add Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
-  Header add Access-Control-Allow-Headers: "Content-Type"
+  Header add Access-Control-Allow-Headers: "Content-Type, Token"
 
   RewriteEngine on
   RewriteBase /
