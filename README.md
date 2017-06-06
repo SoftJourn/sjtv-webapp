@@ -6,15 +6,22 @@ Manage TV playlist, add images or Youtube videos.
 php-mcrypt
 
 ### Install notes
-1. Set DocumentRoot to httpdocs directory
-2. Edit config file (config/main.php)
+1. Set DocumentRoot to public directory
+2. Create config file (app/config/config.php)
+3. Run composer installation
+```
+composer install
+
+```
+
 3. Set permissions
 
 ```
-touch httpdocs/playlist.json && 
+touch public/playlist.json && 
+touch app/config/users.txt && 
 mkdir -p cache/volt && 
-mkdir -p httpdocs/uploads/thumbs && 
-chmod o+w httpdocs/playlist.json httpdocs/uploads httpdocs/uploads/thumbs &&
+mkdir -p public/uploads/thumbs && 
+chmod o+w public/playlist.json public/uploads public/uploads/thumbs app/config/users.txt &&
 chmod -R o+w cache/volt
 ```
 

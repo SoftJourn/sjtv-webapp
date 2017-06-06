@@ -17,7 +17,7 @@ class SettingsController extends ControllerBase
         return $this->send($this->playlist->getSettings());
     }
 
-    public function setAction()
+    public function updateAction()
     {
         if($this->send($this->playlist->update($this->request->getJsonRawBody())))
             return $this->message('Playlist settings have been updated', 200);
