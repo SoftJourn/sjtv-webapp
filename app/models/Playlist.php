@@ -47,8 +47,8 @@ class Playlist
                 $objectItem->startTime = $item->startTime;
                 $objectItem->endTime = $item->endTime;
                 $objectItem->enabled = $item->enabled;
-                $objectItem->likes = $item->likes;
-                $objectItem->dislikes = $item->dislikes;
+                $objectItem->likes = (isset($item->likes) ? $item->likes : 0);
+                $objectItem->dislikes = (isset($item->dislikes) ? $item->dislikes : 0);
                 $this->addItem($objectItem);
 
             }
