@@ -32,6 +32,10 @@ class Acl extends Component
             return true;
         }
 
+        if ($controller == 'index' && $action == 'rating') { // I think this is a very bad practice... temporary solution
+            return true;
+        }
+
         $user = $this->session->get('user');
         if (!($user instanceof UserInterface)) {
             $this->response->redirect("/login/auth?r2=" . $_GET["_url"], true);
