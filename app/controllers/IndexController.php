@@ -287,7 +287,9 @@ class IndexController extends ControllerBase
         if (!$id)
             return false;
 
-        if (!($pos = $this->playlist->getItemPosition($id)))
+        $pos = $this->playlist->getItemPosition($id);
+
+        if (is_null($pos))
             return false;
 
         $item = $this->playlist->items[$pos];
