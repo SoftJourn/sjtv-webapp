@@ -276,6 +276,38 @@ class IndexController extends ControllerBase
         echo json_encode($result);
     }
 
+    /**
+     * @param $id
+     * @param $like
+     * @return bool
+     */
+
+    public function ratingAction($id, $like){
+
+        if (!$id)
+            return false;
+
+        if (!($pos = $this->playlist->getItemPosition($id)))
+            return false;
+
+        $item = $this->playlist->items[$pos];
+
+        ($like) ? $item->likes++ : $item->dislikes++;
+
+        if ($this->playlist->updateItem($id, $item)) {
+            $this->playlist->save();
+            $result = $item;
+        } else {
+            $result = [
+                'status' => 'error',
+                'message' => 'Item not found!'
+            ];
+        }
+
+        echo json_encode($result);
+
+    }
+
     private function _renderItem($item)
     {
         $view = new \Phalcon\Mvc\View\Simple();
