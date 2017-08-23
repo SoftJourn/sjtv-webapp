@@ -16,6 +16,8 @@ class Item
     public $startDate;
     public $endDate;
     public $enabled;
+    public $likes;
+    public $dislikes;
 
     public function __construct($type, $owner, $enabled = true, $created = null)
     {
