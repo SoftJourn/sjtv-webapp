@@ -279,7 +279,7 @@ class IndexController extends ControllerBase
     /**
      * @param $id
      * @param $like
-     * @return bool
+     * @return Phalcon\Http\Response
      */
 
     public function ratingAction($id, $like){
@@ -306,7 +306,11 @@ class IndexController extends ControllerBase
             ];
         }
 
-        echo json_encode($result);
+        $this->view->disable();
+        $this->response->setContentType('application/json', 'UTF-8');
+        $this->response->setContent(json_encode($result));
+
+        return $this->response;
 
     }
 
